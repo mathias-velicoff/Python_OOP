@@ -1,5 +1,4 @@
 from customer import Customer
-from item import Item
 from seller import Seller
 from item_manager import *
 
@@ -38,7 +37,7 @@ while not end_shopping:
     for item in items:
         customer.cart.add(item)
     print("🛒 Cart Contents")
-    customer.cart.show_items()
+    customer.show_items()
     print(f"🤑 Total Amount: {customer.cart.total_amount()}")
 
     print("😭 Do you want to end shopping? (yes/no)")
@@ -58,7 +57,7 @@ seller.show_items()
 print(f"😻👛 {seller.name}'s Wallet Balance: {seller.wallet.balance}")
 
 print("🛒 Cart Contents")
-customer.cart.show_items()
+customer.show_items()
 print(f"🌚 Total Amount: {customer.cart.total_amount()}")
 
 print("🎉 End")

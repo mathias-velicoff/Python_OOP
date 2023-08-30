@@ -1,7 +1,8 @@
 from ownable import Ownable
+from item_manager import show_items
+
 
 class Cart(Ownable):
-    from item_manager import show_items
 
     def __init__(self, owner):
         self.set_owner(owner)
@@ -21,7 +22,20 @@ class Cart(Ownable):
 
     def check_out(self):
         if self.owner.wallet.balance < self.total_amount():
-            pass
+            print("insufficient funds. Cannot complete the purchase")
+            return
+        #El precio de compra de todos los artículos del carrito se transfiere del monedero del propietario del carrito al monedero del propietario del artículo.
+        for item in self.items:
+            self.owner.wallet.withdraw(item.price)
+            item.owner.wallet.deposit(item.price)
+
+            # Transfer ownership of the item to the cart owner
+            item.owner = self.owner
+
+        #vaciar contenido del carrito
+        self.items = []
+        print("purchase completed successfully")
+
         # Requirements
         #   - The purchase amount of each item in the cart (Cart#items) should be transferred from the cart owner's wallet to the item owner's wallet.
         #   - Ownership of all items in the cart (Cart#items) should be transferred to the cart owner.

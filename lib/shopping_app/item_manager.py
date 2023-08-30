@@ -22,6 +22,8 @@ def show_items(self):   # Outputs the stock status of Item instances owned by yo
     for stock in _stock(self):
         table_data.append([stock['number'], stock['label']['name'], stock['label']['price'], len(stock['items'])])
     print(tabulate(table_data, headers=["Number", "Item Name", "Price", "Quantity"], tablefmt="grid"))    # Using the tabulate module to output the results in a table format.
+    #the code provided from the page isn't properly displaying the table with the added items in cart contents before completing the purchase
+
 
 def _stock(self):   # Returns the stock status of Item instances owned by yourself.
     item_ls = self.items_list()
